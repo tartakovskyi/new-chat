@@ -12,6 +12,8 @@ const initialData = {
     remember_me: false
 }
 
+const axios = require('axios').default;
+
 const Login = (props) => {
 
 	const [data, setData] = useState(initialData)

@@ -4,6 +4,8 @@ import Axios  from 'axios'
 import ChatList  from './ChatList'
 
 
+const axios = require('axios').default;
+
 const Chats = () => {
 
 	const [chats, setChats] = useState([])

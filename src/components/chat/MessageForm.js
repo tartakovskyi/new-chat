@@ -7,6 +7,8 @@ import InfoBlock from '../common/InfoBlock'
 import setFormObject from "../common/FormUtils"
 
 
+const axios = require('axios').default;
+
 const initialData = {
     text: ''
 }

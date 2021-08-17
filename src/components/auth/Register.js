@@ -12,6 +12,8 @@ const initialData = {
     confirmPassword: '',
 }
 
+const axios = require('axios').default;
+
 const Register = () => {
 
 	const [data, setData] = useState(initialData)

@@ -1,6 +1,9 @@
 import C from '../constants'
 
 
+const axios = require('axios').default;
+
+
 export const getChatInfoAction = chat_id => {
 
 	return function(dispatch) {

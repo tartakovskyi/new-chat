@@ -6,6 +6,8 @@ import Axios  from 'axios'
 import setFormObject from "../common/FormUtils"
 
 
+const axios = require('axios').default;
+
 const initialData = {
 	user_id: '',
     title: ''
