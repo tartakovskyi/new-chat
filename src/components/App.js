@@ -12,6 +12,10 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 
 
+const axios = require('axios').default
+axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
+
+
 const App = ({isAuthData, getAuthAction, logoutAction}) => {
 
 	const [isLogged, setIsLogged] = useState(Boolean(checkToken()))

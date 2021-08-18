@@ -6,13 +6,14 @@ import InfoBlock from '../common/InfoBlock'
 import setFormObject from "../common/FormUtils"
 
 
+const axios = require('axios').default
+axios.defaults.baseURL = 'http://chat.netxisp.host/api//'
 const initialData = {
     email: '',
     password: '',
     remember_me: false
 }
 
-const axios = require('axios').default;
 
 const Login = (props) => {
 
@@ -27,7 +28,7 @@ const Login = (props) => {
         setErrors(errors)
 
         if (Object.keys(errors).length === 0) {
-        	axios.post('/api/login', data)
+        	axios.post('/login', data)
         	.then(function (response) {
         		localStorage.setItem('token', response.data.token)
         		localStorage.setItem('token_expires', response.data.expires_at)

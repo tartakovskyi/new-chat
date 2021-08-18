@@ -6,8 +6,8 @@ import Axios  from 'axios'
 import setFormObject from "../common/FormUtils"
 
 
-const axios = require('axios').default;
-
+const axios = require('axios').default
+axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
 const initialData = {
 	user_id: '',
     title: ''
@@ -35,7 +35,7 @@ const ChatForm = ({ chatInfo, auth, id }) => {
         setErrors(errors)
 
         if (Object.keys(errors).length === 0) {
-        	const axiosReq = id ? axios.put('/api/chat/' + id, data) : axios.post('/api/chat/', data)
+        	const axiosReq = id ? axios.put('/chat/' + id, data) : axios.post('/chat/', data)
         	axiosReq
         	.then(function (response) {
 				history.push('/chat/' + response.data.id + '/edit/')

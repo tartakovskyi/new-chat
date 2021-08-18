@@ -5,6 +5,8 @@ import InfoBlock from '../common/InfoBlock'
 import setFormObject from "../common/FormUtils"
 
 
+const axios = require('axios').default
+axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
 const initialData = {
 	name: '',
     email: '',
@@ -12,7 +14,6 @@ const initialData = {
     confirmPassword: '',
 }
 
-const axios = require('axios').default;
 
 const Register = () => {
 
@@ -29,7 +30,7 @@ const Register = () => {
         setErrors(errors)
 
         if (Object.keys(errors).length === 0) {
-        	axios.post('/api/register', data)
+        	axios.post('/register', data)
         	.then(function (response) {
         		setSuccessMessage(response.data.message)
         		history.push("/login", { success: successMessage })

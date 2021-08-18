@@ -6,7 +6,8 @@ const ChosenUser = ({ user }) => {
 
 	const { name, userpic } = user
 
-	const src = userpic ? ('/storage/img/userpics/' + userpic) : '/storage/img/user.svg'	
+	const src = userpic ? ('/storage/img/userpics/' + userpic) : '/storage/img/user.svg'
+	const backgroundImage = `background-image: url(${src})`		
 
 	return (
 		<div className="chosen-user d-flex justify-content-between align-items-center alert alert-success">

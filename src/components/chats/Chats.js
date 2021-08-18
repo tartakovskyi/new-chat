@@ -5,13 +5,15 @@ import ChatList  from './ChatList'
 
 
 const axios = require('axios').default;
+axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
+
 
 const Chats = () => {
 
 	const [chats, setChats] = useState([])
 
 	useEffect(() => {
-        axios.get('/api/chat')
+        axios.get('/chat')
 		.then((response) => {
 			setChats(response.data)
 		})
