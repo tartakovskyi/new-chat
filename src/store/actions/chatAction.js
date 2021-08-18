@@ -1,14 +1,15 @@
 import C from '../constants'
 
 
-const axios = require('axios').default;
+const axios = require('axios').default
+const apiUrl = 'chat.netxisp.host/api/'
 
 
 export const getChatInfoAction = chat_id => {
 
 	return function(dispatch) {
 
-		return axios.get('/api/chat/' + chat_id )
+		return axios.get(apiUrl + 'api/chat/' + chat_id )
 		.then(response => {
 			dispatch({
 				type: C.GET_CHAT_INFO,
@@ -26,7 +27,7 @@ export const getMessagesAction = (chat_id, last_message = null) => {
 
 	return function(dispatch) {
 
-		return axios.get('/api/chat/' + chat_id + '/message', {
+		return axios.get(apiUrl + 'chat/' + chat_id + '/message', {
 			params: {
 				last_message: last_message
 			}
@@ -47,7 +48,7 @@ export const addParticipantAction = (chat_id, user_id) => {
 
 	return function(dispatch) {
 
-		return axios.post(`/api/chat/${chat_id}/participant`, {
+		return axios.post(apiUrl + `chat/${chat_id}/participant`, {
 			user_id: user_id
 		})
 		.then(response => {
@@ -66,7 +67,7 @@ export const getParticipantsAction = chat_id => {
 
 	return function(dispatch) {
 
-		return axios.get(`/api/chat/${chat_id}/participant`)
+		return axios.get(apiUrl + `chat/${chat_id}/participant`)
 		.then(response => {
 			dispatch({
 				type: C.GET_PARTICIPANTS,

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import Axios  from 'axios'
 import PropTypes from 'prop-types'
 import { getChatInfoAction } from '../../store/actions/chatAction'
 import ChatForm from "./ChatForm"
