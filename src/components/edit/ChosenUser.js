@@ -6,7 +6,7 @@ const ChosenUser = ({ user }) => {
 
 	const { name, userpic } = user
 
-	const src = userpic ? ('/storage/img/userpics/' + userpic) : '/storage/img/user.svg'
+	const src = userpic ? ('/img/userpics/' + userpic) : '/img/user.svg'
 	const backgroundImage = `background-image: url(${src})`		
 
 	return (
@@ -16,7 +16,7 @@ const ChosenUser = ({ user }) => {
 				<span>{name}</span>
 			</div>
 			<a href="#"  className="chosen-user__close">
-				<svg><use xlinkHref="/storage/img/icons.svg#close"></use></svg>
+				<svg><use xlinkHref="/img/icons.svg#close"></use></svg>
 			</a>
 		</div>
 	)

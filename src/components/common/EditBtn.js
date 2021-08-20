@@ -6,7 +6,7 @@ const EditBtn = ({ url }) => {
 
   return (
     <Link to={url} className="btn btn-primary">
-        <svg><use xlinkHref="/storage/img/icons.svg#pen"></use></svg>
+        <svg><use xlinkHref="/img/icons.svg#pen"></use></svg>
     </Link>       
     )
 }

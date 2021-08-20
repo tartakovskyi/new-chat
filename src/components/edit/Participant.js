@@ -8,7 +8,7 @@ const Participant = ({name, id, deleteParticipant}) => {
 	return (
 		<button className="participant btn btn-primary btn-sm" onClick={() => deleteParticipant(id)} id={id} >
 			{name}
-			<svg><use xlinkHref="/storage/img/icons.svg#close"></use></svg>
+			<svg><use xlinkHref="/img/icons.svg#close"></use></svg>
 		</button>
 	)
 }

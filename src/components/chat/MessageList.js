@@ -8,7 +8,7 @@ const MessageList = ({messages, isAuthData, auth}) => {
 
 	let lastMessage = sessionStorage.getItem('lastMessage')
 
-	const snd = new Audio("/storage/sounds/new.mp3");
+	const snd = new Audio("/sounds/new.mp3");
 
 	useEffect(() => {
 		if (lastMessage && messages.length && isAuthData) newMesAlert()
