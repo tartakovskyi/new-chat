@@ -24,7 +24,7 @@ const MessageForm = ({user_id, chat_id, getMessagesAction}) => {
         setErrors(errors)
 
         if (Object.keys(errors).length === 0) {
-        	axios.post('/api/chat/' + chat_id + '/message', {
+        	axios.post('/chat/' + chat_id + '/message', {
         		user_id : user_id,
         		chat_id : chat_id,
         		text: data.text
