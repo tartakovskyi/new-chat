@@ -1,18 +1,17 @@
-import C from '../constants';
+import C from "../constants";
 
-const initialState = {list: [], lastMessage: null};
+const initialState = { list: [], lastMessage: null };
 
-export default function messages (state = initialState, action) {
-	switch (action.type) {
+export default function messages(state = initialState, action) {
+  switch (action.type) {
+    case C.GET_MESSAGES:
+      const list = [...state.list, ...action.messages];
+      return {
+        ...state,
+        list,
+      };
 
-		case C.GET_MESSAGES:
-		const list = [...state.list, ...action.messages]
-		return {
-			...state,
-			list
-		}
-		
-		default:
-		return state
-	}
+    default:
+      return state;
+  }
 }
