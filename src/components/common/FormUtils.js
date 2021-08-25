@@ -1,24 +1,24 @@
 const setValue = {
-  text: (value) => value,
-  number: (value) => {
-    let parsedValue = parseFloat(value);
-    parsedValue =
-      isNaN(parsedValue) || parsedValue === 0 ? "" : Math.abs(parsedValue);
+    text: (value) => value,
+    number: (value) => {
+        let parsedValue = parseFloat(value)
+        parsedValue =
+            isNaN(parsedValue) || parsedValue === 0 ? '' : Math.abs(parsedValue)
 
-    return parsedValue;
-  },
-  checkbox: (value) => value,
-  email: (value) => value,
-  textarea: (value) => value,
-  password: (value) => value,
-};
+        return parsedValue
+    },
+    checkbox: (value) => value,
+    email: (value) => value,
+    textarea: (value) => value,
+    password: (value) => value,
+}
 
 const setFormObject =
-  (data, fn) =>
-  ({ target }) => {
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    (data, fn) =>
+    ({ target }) => {
+        const value = target.type === 'checkbox' ? target.checked : target.value
 
-    return fn({ ...data, [target.name]: setValue[target.type](value) });
-  };
+        return fn({ ...data, [target.name]: setValue[target.type](value) })
+    }
 
-export default setFormObject;
+export default setFormObject

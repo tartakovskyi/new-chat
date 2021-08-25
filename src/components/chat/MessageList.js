@@ -1,49 +1,52 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import Message from "./Message";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import Message from './Message'
 
 const MessageList = ({ messages, isAuthData, auth }) => {
-  let lastMessage = sessionStorage.getItem("lastMessage");
+    let lastMessage = sessionStorage.getItem('lastMessage')
 
-  const snd = new Audio("/sounds/new.mp3");
+    const snd = new Audio('/sounds/new.mp3')
 
-  useEffect(() => {
-    if (lastMessage && messages.length && isAuthData) newMesAlert();
-    if (messages.length)
-      sessionStorage.setItem("lastMessage", messages[messages.length - 1].id);
-  }, [messages]);
+    useEffect(() => {
+        if (lastMessage && messages.length && isAuthData) newMesAlert()
+        if (messages.length)
+            sessionStorage.setItem(
+                'lastMessage',
+                messages[messages.length - 1].id
+            )
+    }, [messages])
 
-  const newMesAlert = () => {
-    if (
-      messages[messages.length - 1].id > lastMessage &&
-      messages[messages.length - 1].user.id != auth.id
+    const newMesAlert = () => {
+        if (
+            messages[messages.length - 1].id > lastMessage &&
+            messages[messages.length - 1].user.id != auth.id
+        )
+            snd.play()
+    }
+
+    return (
+        <div className="mb-5">
+            {messages.map((message) => (
+                <Message
+                    key={message.id}
+                    message={message}
+                    className="message rounded mb-4 p-4"
+                />
+            ))}
+        </div>
     )
-      snd.play();
-  };
-
-  return (
-    <div className="mb-5">
-      {messages.map((message) => (
-        <Message
-          key={message.id}
-          message={message}
-          className="message rounded mb-4 p-4"
-        />
-      ))}
-    </div>
-  );
-};
+}
 
 MessageList.propTypes = {
-  messages: PropTypes.array,
-};
+    messages: PropTypes.array,
+}
 
 const mapStateToProps = ({ messages, user }) => {
-  return {
-    messages: messages.list,
-    ...user,
-  };
-};
+    return {
+        messages: messages.list,
+        ...user,
+    }
+}
 
-export default connect(mapStateToProps)(MessageList);
+export default connect(mapStateToProps)(MessageList)
