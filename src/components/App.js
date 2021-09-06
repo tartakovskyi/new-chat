@@ -3,7 +3,6 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getAuthAction, logoutAction } from '../store/actions/userAction'
-import { checkToken } from '../api'
 import Navigation from './common/Navigation'
 import Chat from './chat/Chat'
 import Chats from './chats/Chats'
@@ -18,13 +17,11 @@ axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
 
 const App = ({isAuthData, getAuthAction, logoutAction}) => {
 
-	const [isLogged, setIsLogged] = useState(Boolean(checkToken()))
+	const [isLogged, setIsLogged] = useState(false)
 
 	useEffect(() => {
 		if (isAuthData !== true) {
-			if (checkToken()) {
-				getAuthAction()
-			}
+			getAuthAction()
 		}
     }, [isAuthData, isLogged])
 
@@ -40,7 +37,7 @@ const App = ({isAuthData, getAuthAction, logoutAction}) => {
 			<main>
 				<Route path='/login' render={(props) => <Login {...props} setIsLogged={setIsLogged} />} />
 				<Route path='/register' component={Register}/>
-				{!checkToken() && <Redirect to='/login' />}
+				{!isLogged && <Redirect to='/login' />}
 				<Route exact path='/' component={Chats}/>
 				<Switch>
 					<Route path='/chat/add' component={EditChatPage}/>

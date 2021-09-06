@@ -11,6 +11,7 @@ export const getAuthAction = () => {
 	return function(dispatch) {
 
 		return getAuthData().then(response => {
+			const auth = response.error ? null : response.data
 			dispatch({
 				type: C.GET_AUTH,
      			auth: response.data

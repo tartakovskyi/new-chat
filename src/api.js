@@ -21,6 +21,10 @@ export const getAuthData = () => {
     return axios.get('/current',{
         headers: {'Authorization' : token}
     })
+    .catch(error => { 
+        console.log(error)
+        return { error } 
+    })
 }
 
 
