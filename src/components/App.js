@@ -16,12 +16,11 @@ axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
 
 const App = ({ isAuthData, getAuthAction, logoutAction }) => {
     const [isLogged, setIsLogged] = useState(Boolean(checkToken()))
+    const [isAuthRequest, setIsAuthRequest] = useState(false)
 
     useEffect(() => {
         if (isAuthData !== true) {
-            if (checkToken()) {
-                getAuthAction()
-            }
+            getAuthAction().finally(() => setIsAuthRequest(true))
         }
     }, [isAuthData, isLogged])
 
@@ -35,20 +34,24 @@ const App = ({ isAuthData, getAuthAction, logoutAction }) => {
         <div>
             <Navigation logout={logout} />
             <main>
-                <Route
-                    path="/login"
-                    render={(props) => (
-                        <Login {...props} setIsLogged={setIsLogged} />
-                    )}
-                />
-                <Route path="/register" component={Register} />
-                {!checkToken() && <Redirect to="/login" />}
-                <Route exact path="/" component={Chats} />
-                <Switch>
-                    <Route path="/chat/add" component={EditChatPage} />
-                    <Route exact path="/chat/:id" component={Chat} />
-                </Switch>
-                <Route path="/chat/:id/edit" component={EditChatPage} />
+                {isAuthRequest && (
+                    <>
+                        <Route
+                            path="/login"
+                            render={(props) => (
+                                <Login {...props} setIsLogged={setIsLogged} />
+                            )}
+                        />
+                        <Route path="/register" component={Register} />
+                        {!isAuthData && <Redirect to="/login" />}
+                        <Route exact path="/" component={Chats} />
+                        <Switch>
+                            <Route path="/chat/add" component={EditChatPage} />
+                            <Route exact path="/chat/:id" component={Chat} />
+                        </Switch>
+                        <Route path="/chat/:id/edit" component={EditChatPage} />
+                    </>
+                )}
             </main>
         </div>
     )
