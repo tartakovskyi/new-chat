@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const token = 'Bearer ' + localStorage.getItem('token')
+const localToken = localStorage.getItem('token')
+const token = 'Bearer ' + localToken
 axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
 
 export const checkToken = () => {
@@ -17,8 +18,11 @@ export const deleteFromChat = (participant_id) => {
 }
 
 export const getAuthData = () => {
+    const authToken = localToken
+        ? token
+        : 'Bearer ' + localStorage.getItem('token')
     return axios.get('/current', {
-        headers: { Authorization: token },
+        headers: { Authorization: authToken },
     })
 }
 

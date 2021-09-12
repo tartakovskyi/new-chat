@@ -28,7 +28,10 @@ const Navigation = ({ isAuthData, logout }) => {
                     <ul className="navbar-nav ml-auto">
                         {isAuthData ? (
                             <li className="nav-item">
-                                <span onClick={logout} className="nav-link">
+                                <span
+                                    onClick={logout}
+                                    className="nav-link nav-link--logout"
+                                >
                                     Logout
                                 </span>
                             </li>
