@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const Navigation = ({ isAuthData, logout }) => {
+const Navigation = ({ auth, logout }) => {
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div className="container">
@@ -26,16 +26,7 @@ const Navigation = ({ isAuthData, logout }) => {
                     id="navbarSupportedContent"
                 >
                     <ul className="navbar-nav ml-auto">
-                        {isAuthData ? (
-                            <li className="nav-item">
-                                <span
-                                    onClick={logout}
-                                    className="nav-link nav-link--logout"
-                                >
-                                    Logout
-                                </span>
-                            </li>
-                        ) : (
+                        {!auth ? (
                             <>
                                 <li className="nav-item">
                                     <NavLink to="/login" className="nav-link">
@@ -51,6 +42,15 @@ const Navigation = ({ isAuthData, logout }) => {
                                     </NavLink>
                                 </li>
                             </>
+                        ) : (
+                            <li className="nav-item">
+                                <span
+                                    onClick={logout}
+                                    className="nav-link nav-link--logout"
+                                >
+                                    Logout
+                                </span>
+                            </li>
                         )}
                     </ul>
                 </div>
@@ -61,7 +61,7 @@ const Navigation = ({ isAuthData, logout }) => {
 
 const mapStateToProps = function ({ user }) {
     return {
-        isAuthData: user.isAuthData,
+        auth: user.auth,
     }
 }
 

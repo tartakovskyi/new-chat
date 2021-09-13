@@ -10,15 +10,15 @@ import EditChatPage from './edit/EditChatPage'
 import Login from './auth/Login'
 import Register from './auth/Register'
 
-const App = ({ isAuthData, getAuthAction, logoutAction }) => {
+const App = ({ auth, getAuthAction, logoutAction }) => {
     const [isLogged, setIsLogged] = useState(false)
     const [isAuthRequest, setIsAuthRequest] = useState(false)
 
     useEffect(() => {
-        if (isAuthData !== true) {
+        if (auth !== true) {
             getAuthAction().finally(() => setIsAuthRequest(true))
         }
-    }, [isAuthData, isLogged])
+    }, [isLogged])
 
     const logout = () => {
         localStorage.removeItem('token')
@@ -39,7 +39,7 @@ const App = ({ isAuthData, getAuthAction, logoutAction }) => {
                             )}
                         />
                         <Route path="/register" component={Register} />
-                        {!isAuthData && <Redirect to="/login" />}
+                        {!auth && <Redirect to="/login" />}
                         <Route exact path="/" component={Chats} />
                         <Switch>
                             <Route path="/chat/add" component={EditChatPage} />
@@ -54,12 +54,12 @@ const App = ({ isAuthData, getAuthAction, logoutAction }) => {
 }
 
 App.propTypes = {
-    isAuthData: PropTypes.bool,
+    auth: PropTypes.bool,
 }
 
 const mapStateToProps = function ({ user }) {
     return {
-        isAuthData: user.isAuthData,
+        auth: user.auth,
     }
 }
 
