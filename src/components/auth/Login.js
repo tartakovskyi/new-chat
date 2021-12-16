@@ -28,10 +28,6 @@ const Login = (props) => {
                 .post('/login', data)
                 .then(function (response) {
                     localStorage.setItem('token', response.data.token)
-                    localStorage.setItem(
-                        'token_expires',
-                        response.data.expires_at
-                    )
                     props.setIsLogged(true)
                     history.push('/')
                 })

@@ -1,14 +1,8 @@
 import axios from 'axios'
 
-const token = 'Bearer ' + localStorage.getItem('token')
+const localToken = localStorage.getItem('token')
+const token = 'Bearer ' + localToken
 axios.defaults.baseURL = 'http://chat.netxisp.host/api/'
-
-export const checkToken = () => {
-    return (
-        localStorage.getItem('token') &&
-        Date.parse(localStorage.getItem('token_expires')) > Date.now()
-    )
-}
 
 export const deleteFromChat = (participant_id) => {
     return axios.delete('/participant/' + participant_id, {
@@ -17,8 +11,11 @@ export const deleteFromChat = (participant_id) => {
 }
 
 export const getAuthData = () => {
+    const authToken = localToken
+        ? token
+        : 'Bearer ' + localStorage.getItem('token')
     return axios.get('/current', {
-        headers: { Authorization: token },
+        headers: { Authorization: authToken },
     })
 }
 

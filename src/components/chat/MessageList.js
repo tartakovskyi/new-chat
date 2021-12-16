@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Message from './Message'
 
-const MessageList = ({ messages, isAuthData, auth }) => {
+const MessageList = ({ messages, auth }) => {
     let lastMessage = sessionStorage.getItem('lastMessage')
 
     const snd = new Audio('/sounds/new.mp3')
 
     useEffect(() => {
-        if (lastMessage && messages.length && isAuthData) newMesAlert()
+        if (lastMessage && messages.length && auth) newMesAlert()
         if (messages.length)
             sessionStorage.setItem(
                 'lastMessage',

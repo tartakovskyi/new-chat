@@ -11,7 +11,6 @@ import MessageForm from './MessageForm'
 const Chat = ({
     match,
     auth,
-    isAuthData,
     chatInfo,
     getMessagesAction,
     getChatInfoAction,
@@ -38,9 +37,7 @@ const Chat = ({
                     <h1>{chatInfo && chatInfo.title}</h1>
                     <MessageList />
                     <div ref={refScrollTarget}></div>
-                    {isAuthData && (
-                        <MessageForm chat_id={id} user_id={auth.id} />
-                    )}
+                    {auth && <MessageForm chat_id={id} user_id={auth.id} />}
                 </div>
             </div>
         </div>
@@ -49,7 +46,6 @@ const Chat = ({
 
 Chat.propTypes = {
     auth: PropTypes.object,
-    isAuthData: PropTypes.bool,
     chatInfo: PropTypes.object,
 }
 

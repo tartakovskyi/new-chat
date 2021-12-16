@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import EditBtn from '../common/EditBtn'
 
-const ChatList = ({ chats, auth, isAuthData }) => {
+const ChatList = ({ chats, auth }) => {
     return (
         <tbody>
             {chats.map((chat, index) => (
@@ -34,7 +34,6 @@ const ChatList = ({ chats, auth, isAuthData }) => {
 
 ChatList.propTypes = {
     auth: PropTypes.object,
-    isAuthData: PropTypes.bool,
     chats: PropTypes.array,
 }
 
